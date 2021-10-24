@@ -76,7 +76,7 @@ X_test = tokenizer.texts_to_sequences(X_test)
 class Movie_Review():
     def __init__(self):
         self.loaded_model = load_model('movie_best_model.h5')
-        with open('tokenizer.pickle', 'rb') as handle:
+        with open('movie_tokenizer.pickle', 'rb') as handle:
             self.tokenizer = pickle.load(handle)
 
     def sentiment_predict(self, new_sentence):
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
     history = model.fit(X_train, y_train, epochs=15, callbacks=[es], batch_size=64, validation_split=0.2)
     model.save('movie_best_model.h5')
-    with open('tokenizer.pickle', 'wb') as handle:
+    with open('movie_tokenizer.pickle', 'wb') as handle:
         pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
     review = Movie_Review()
     print(review.sentiment_predict('아 ㅋㅋ 이 영화 개꿀잼이자나 ㅋㅋ'))
