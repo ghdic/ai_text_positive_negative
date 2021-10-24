@@ -1,9 +1,12 @@
 import os
 from flask import Flask, request
 from flask_restx import Api, Resource
+from movie_review import Movie_Review
 
 app = Flask(__name__)
 api = Api(app)
+
+review_movie = Movie_Review()
 
 @api.route('/shopping')
 class Shopping(Resource):
@@ -19,7 +22,10 @@ class Shopping(Resource):
 @api.route('/movie', methods=['GET', 'POST'])
 class Movie(Resource):
     def get(self):
-        return 'movie'
+        print(request.args.get('q'))
+        print(review_movie.sentiment_predict(request.args.get('q')))
+        predict = review_movie.sentiment_predict(request.args.get('q'))
+        return {'predict': predict}
 
     def post(self):
         self.get()
