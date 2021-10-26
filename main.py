@@ -15,6 +15,7 @@ review_shopping = ShoppingReview()
 class Shopping(Resource):
     def get(self):
         predict = review_shopping.sentiment_predict(request.args.get('q'))
+        print(predict)
         return {'predict': predict}
 
     def post(self):
@@ -25,6 +26,7 @@ class Shopping(Resource):
 class Movie(Resource):
     def get(self):
         predict = review_movie.sentiment_predict(request.args.get('q'))
+        print(predict)
         return {'predict': predict}
 
     def post(self):

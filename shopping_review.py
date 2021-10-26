@@ -1,7 +1,7 @@
 import pickle
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from konlpy.tag import Mecab
+from eunjeon import Mecab
 
 class ShoppingReview():
     def __init__(self):
